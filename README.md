@@ -11,7 +11,7 @@ npm i jimp-roundedcorners
 ## Usage
 
 ```typescript
-import Jimp from 'jimp';
+import Jimp from 'jimp'
 import { roundCorners } from 'jimp-roundcorners'
 
 Jimp.read('inImgPath')
