@@ -22,6 +22,6 @@
         "access": "public"
     },
     "author": "Kristóf-Attila Kovács",
-    "name": "jimp-roundedcorners",
+    "name": "jimp-roundcorners",
     "version": "1.0.0"
 }
