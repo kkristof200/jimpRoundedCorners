@@ -33,6 +33,7 @@ export async function roundCornersFromPath(
         })
         .catch(err => reject(err))
     })
+}
 
 /**
  * Rounds the corners of an image
