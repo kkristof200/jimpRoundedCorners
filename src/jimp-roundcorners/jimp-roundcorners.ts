@@ -1,6 +1,38 @@
 import { ImageCallback } from '@jimp/core';
 import { isNodePattern } from "@jimp/utils";
 import Jimp from 'jimp'
+import fs from 'fs'
+
+export async function roundCornersFromPath(
+    inImgPath: string,
+    options?: {
+        outImgPath?: string,
+        cornerRadius?: {
+            topLeft?: number,
+            topRight?: number,
+            bottomRight?: number,
+            bottomLeft?: number,
+            global?: number
+        }
+    }
+) {
+    return new Promise<{
+        img: Jimp,
+        path?: string
+    }>((resolve, reject) => {
+        Jimp.read(inImgPath)
+        .then(inImg => {
+            const img = roundCorners(inImg, options && options.cornerRadius ? { cornerRadius: options.cornerRadius } : null)
+
+            if (options.outImgPath) img.write(options.outImgPath)
+
+            resolve({
+                img: img,
+                path: (options.outImgPath && fs.existsSync(options.outImgPath)) ? options.outImgPath : null
+            })
+        })
+        .catch(err => reject(err))
+    })
 
 /**
  * Rounds the corners of an image
